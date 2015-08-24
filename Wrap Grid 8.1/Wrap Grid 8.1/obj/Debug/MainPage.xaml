@@ -1,0 +1,45 @@
+﻿<Page
+    x:Class="Wrap_Grid_8._1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Wrap_Grid_8._1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Wrap_Grid_8._1.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+<Page.Resources>
+        <Style x:Key="WrappedItemTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="12,6" />
+        </Style>
+        <ItemsPanelTemplate x:Key="HorizontalItemsPanel">
+            <controls:WrapPanel />
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="WrappedItemDataTemplate">
+            <Border Background="LightGray" Margin="4,2">
+                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center"
+                       Style="{StaticResource WrappedItemTextStyle}"
+                       Text="{Binding}" />
+                    <Image Height="24"
+                   Margin="12,0"
+                   Source="/Assets/30x30_close.png" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <Style x:Key="WrappedItemsControlStyle" TargetType="ListView">
+            <Setter Property="ItemsPanel" Value="{StaticResource HorizontalItemsPanel}" />
+            <Setter Property="ItemTemplate" Value="{StaticResource WrappedItemDataTemplate}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="DarkGray" />
+            <Setter Property="Margin" Value="6" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <ListView Name="LocationItemsControl" Style="{StaticResource WrappedItemsControlStyle}" />
+    </Grid>
+</Page>
+
